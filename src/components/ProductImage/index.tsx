@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 
+// Assets
 import espresso from '../../assets/espresso.svg'
 import americanEspresso from '../../assets/americanEspresso.svg'
 import creamyEspresso from '../../assets/creamyEspresso.svg'
@@ -18,10 +19,11 @@ import irish from '../../assets/irish.svg'
 interface ProductImageProps {
   srcPath: string
   alternativeText: string
+  widthImage?: number
 }
 
 const ProductImage: React.FC<ProductImageProps> = memo(
-  ({ srcPath, alternativeText }: ProductImageProps) => {
+  ({ srcPath, alternativeText, widthImage }: ProductImageProps) => {
     let imageSrc = ''
 
     switch (srcPath) {
@@ -71,7 +73,7 @@ const ProductImage: React.FC<ProductImageProps> = memo(
         imageSrc = espresso
     }
 
-    return <img src={imageSrc} alt={alternativeText} />
+    return <img src={imageSrc} alt={alternativeText} width={widthImage} />
   },
 )
 

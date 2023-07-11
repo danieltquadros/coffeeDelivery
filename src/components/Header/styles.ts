@@ -1,9 +1,25 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
+  position: fixed;
+  width: 100%;
+  background: ${(props) => props.theme.background};
+  z-index: 1;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+`
+
+export const HeaderArea = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
+
+  margin: 0 auto;
+  max-width: 70rem;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+  }
 
   & .locationAndCart {
     display: flex;
@@ -31,7 +47,7 @@ export const LocationArea = styled.div`
   }
 `
 
-export const CartArea = styled.div`
+export const CartArea = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,6 +56,34 @@ export const CartArea = styled.div`
   padding: 0.375rem;
   background: ${(props) => props.theme.yellowLight};
   border-radius: 6px;
+  border: none;
+
+  cursor: pointer;
+
+  &:disabled {
+    background: ${(props) => props.theme.baseLabel};
+    cursor: default;
+
+    svg {
+      color: ${(props) => props.theme.white};
+    }
+    div {
+      background: ${(props) => props.theme.baseText};
+      color: ${(props) => props.theme.white};
+    }
+  }
+
+  &:not(:disabled):hover {
+    background: ${(props) => props.theme.yellow};
+
+    svg {
+      color: ${(props) => props.theme.yellowLight};
+    }
+
+    div {
+      color: ${(props) => props.theme.yellow};
+    }
+  }
 
   svg {
     color: ${(props) => props.theme.yellowDark};

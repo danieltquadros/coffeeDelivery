@@ -1,28 +1,48 @@
-import React, { useState } from 'react'
+import { useContext } from 'react'
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
 import { coffee as coffeeData } from '../../coffee.json'
-import * as ICoffee from '../../interfaces/coffee'
+
+// MUI
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
+// interfaces
+import * as ICoffee from '../../interfaces/Coffee'
+
+// Assets
 import coffeeCup from '../../assets/coffeeCup.svg'
 
-import IconArea from './components/IconContainer'
+// Global components
+import IconArea from '../../components/IconContainer'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
+
+// Local components
 import Product from './components/Product'
+
+// Styles
 import {
   HeaderContainer,
   DescriptionArea,
   DescriptionItem,
   MainContainer,
+  TitleArea,
 } from './styles'
 
 const Home = () => {
-  const [coffeeList] = useState<ICoffee.model[]>(coffeeData)
+  const coffeeList: ICoffee.model[] = coffeeData
+  const { itemsInCart } = useContext(CoffeeContext)
 
-  console.log(coffeeList)
+  const theme = useTheme()
+  const md = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <>
       <HeaderContainer>
         <DescriptionArea>
-          <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+          <TitleArea>
+            <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+            {md && <img src={coffeeCup} alt="" />}
+          </TitleArea>
           <p>
             Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
             hora.
@@ -30,13 +50,13 @@ const Home = () => {
           <div className="descriptionItemList">
             <div className="descriptionItemColumn">
               <DescriptionItem>
-                <IconArea variant="cart">
+                <IconArea variant="yellowDark">
                   <ShoppingCart size={16} weight="fill" />
                 </IconArea>
                 Compra simples e segura
               </DescriptionItem>
               <DescriptionItem>
-                <IconArea variant="timer">
+                <IconArea variant="yellow">
                   <Timer size={16} weight="fill" />
                 </IconArea>
                 Entrega rápida e rastreada
@@ -44,13 +64,13 @@ const Home = () => {
             </div>
             <div className="descriptionItemColumn">
               <DescriptionItem>
-                <IconArea variant="package">
+                <IconArea variant="baseLabel">
                   <Package size={16} weight="fill" />
                 </IconArea>
                 Embalagem mantém o café intacto
               </DescriptionItem>
               <DescriptionItem>
-                <IconArea variant="coffee">
+                <IconArea variant="purple">
                   <Coffee size={16} weight="fill" />
                 </IconArea>
                 O café chega fresquinho até você
@@ -58,13 +78,17 @@ const Home = () => {
             </div>
           </div>
         </DescriptionArea>
-        <img src={coffeeCup} alt="" />
+        {!md && <img src={coffeeCup} alt="" />}
       </HeaderContainer>
       <MainContainer>
         <h1>Nossos cafés</h1>
-        {coffeeList.map((cf: ICoffee.model) => (
-          <Product key={cf.id} coffee={cf} />
-        ))}
+        <div className="productListContainer">
+          {coffeeList.map((cf: ICoffee.model) => {
+            const isInCart =
+              itemsInCart.find((ic) => ic.item?.id === cf.id) || null
+            return <Product key={cf.id} coffee={cf} quantityItem={isInCart} />
+          })}
+        </div>
       </MainContainer>
     </>
   )

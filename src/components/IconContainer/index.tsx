@@ -1,4 +1,6 @@
 import React from 'react'
+
+// Styles
 import { IconContainer, IconVariantTypes } from './styles'
 
 interface IconContainerProps {

@@ -1,17 +1,17 @@
 import styled, { css } from 'styled-components'
-import { defaultTheme } from '../../../../styles/themes/default'
+import { defaultTheme } from '../../styles/themes/default'
 
-export type IconVariantTypes = 'cart' | 'timer' | 'package' | 'coffee'
+export type IconVariantTypes = 'yellowDark' | 'yellow' | 'baseLabel' | 'purple'
 
 interface IconVariantProps {
   variant: IconVariantTypes
 }
 
 const iconVariant = {
-  cart: defaultTheme.yellowDark,
-  timer: defaultTheme.yellow,
-  package: defaultTheme.baseLabel,
-  coffee: defaultTheme.purple,
+  yellowDark: defaultTheme.yellowDark,
+  yellow: defaultTheme.yellow,
+  baseLabel: defaultTheme.baseLabel,
+  purple: defaultTheme.purple,
 }
 
 export const IconContainer = styled.div<IconVariantProps>`
