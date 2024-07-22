@@ -1,23 +1,23 @@
-import { useContext } from 'react'
-import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
-import { coffee as coffeeData } from '../../coffee.json'
+import { useContext } from "react";
+import { ShoppingCart, Timer, Package, Coffee } from "phosphor-react";
+import { coffee as coffeeData } from "../../coffee.json";
 
 // MUI
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 // interfaces
-import * as ICoffee from '../../interfaces/Coffee'
+import * as ICoffee from "../../interfaces/coffee";
 
 // Assets
-import coffeeCup from '../../assets/coffeeCup.svg'
+import coffeeCup from "../../assets/coffeeCup.svg";
 
 // Global components
-import IconArea from '../../components/IconContainer'
-import { CoffeeContext } from '../../contexts/CoffeeContext'
+import IconArea from "../../components/IconContainer";
+import { CoffeeContext } from "../../contexts/CoffeeContext";
 
 // Local components
-import Product from './components/Product'
+import Product from "./components/Product";
 
 // Styles
 import {
@@ -26,14 +26,14 @@ import {
   DescriptionItem,
   MainContainer,
   TitleArea,
-} from './styles'
+} from "./styles";
 
 const Home = () => {
-  const coffeeList: ICoffee.model[] = coffeeData
-  const { itemsInCart } = useContext(CoffeeContext)
+  const coffeeList: ICoffee.model[] = coffeeData;
+  const { itemsInCart } = useContext(CoffeeContext);
 
-  const theme = useTheme()
-  const md = useMediaQuery(theme.breakpoints.down('md'))
+  const theme = useTheme();
+  const md = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <>
@@ -85,13 +85,13 @@ const Home = () => {
         <div className="productListContainer">
           {coffeeList.map((cf: ICoffee.model) => {
             const isInCart =
-              itemsInCart.find((ic) => ic.item?.id === cf.id) || null
-            return <Product key={cf.id} coffee={cf} quantityItem={isInCart} />
+              itemsInCart.find((ic) => ic.item?.id === cf.id) || null;
+            return <Product key={cf.id} coffee={cf} quantityItem={isInCart} />;
           })}
         </div>
       </MainContainer>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
