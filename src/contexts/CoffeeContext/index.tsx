@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useEffect } from "react";
 
 // Interfaces
-import * as ICoffee from "../../interfaces/Coffee";
+import * as ICoffee from "../../interfaces/coffee";
 import * as ICartItem from "../../interfaces/CartItem";
 import * as IPaymentForm from "../../interfaces/PaymentForm";
 import * as ISale from "../../interfaces/Sale";

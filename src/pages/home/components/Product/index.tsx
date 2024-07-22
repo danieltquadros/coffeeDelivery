@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 
 // Interfaces
-import * as ICoffee from "../../../../interfaces/Coffee";
+import * as ICoffee from "../../../../interfaces/coffee";
 import * as ICartItem from "../../../../interfaces/CartItem";
 
 // Global components
