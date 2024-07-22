@@ -7,7 +7,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 // interfaces
-import * as ICoffee from "../../interfaces/coffee";
+import * as ICoffee from "../../interfaces/Coffee";
 
 // Assets
 import coffeeCup from "../../assets/coffeeCup.svg";
