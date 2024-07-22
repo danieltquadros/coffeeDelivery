@@ -1,33 +1,33 @@
-import { ReactNode, createContext, useEffect } from 'react'
+import { ReactNode, createContext, useEffect } from "react";
 
 // Interfaces
-import * as ICoffee from '../../interfaces/Coffee'
-import * as ICartItem from '../../interfaces/CartItem'
-import * as IPaymentForm from '../../interfaces/PaymentForm'
-import * as ISale from '../../interfaces/Sale'
+import * as ICoffee from "../../interfaces/Coffee";
+import * as ICartItem from "../../interfaces/CartItem";
+import * as IPaymentForm from "../../interfaces/PaymentForm";
+import * as ISale from "../../interfaces/Sale";
 
 // Contexts
-import usePaymentFormContext from './paymentForm'
-import useItemsInCartContext from './itemsInCart'
-import useSalesContext from './sales'
+import usePaymentFormContext from "./paymentForm";
+import useItemsInCartContext from "./itemsInCart";
+import useSalesContext from "./sales";
 
 interface CoffeeContextType {
-  itemsInCart: ICartItem.model[]
-  paymentForm: IPaymentForm.model
-  addCoffeeInCart: (coffee: ICoffee.model) => void
-  subtractCoffeeOfCart: (coffee: ICoffee.model) => void
-  removeCoffeeOffCart: (coffeeId: number) => void
-  clearCart: () => void
-  addNewPayment: (paymentForm: IPaymentForm.model) => void
-  clearPaymentForm: () => void
-  sales: ISale.model[]
-  addNewSale: (sale: ISale.model) => void
+  itemsInCart: ICartItem.model[];
+  paymentForm: IPaymentForm.model;
+  addCoffeeInCart: (coffee: ICoffee.model) => void;
+  subtractCoffeeOfCart: (coffee: ICoffee.model) => void;
+  removeCoffeeOffCart: (coffeeId: number) => void;
+  clearCart: () => void;
+  addNewPayment: (paymentForm: IPaymentForm.model) => void;
+  clearPaymentForm: () => void;
+  sales: ISale.model[];
+  addNewSale: (sale: ISale.model) => void;
 }
 
-export const CoffeeContext = createContext({} as CoffeeContextType)
+export const CoffeeContext = createContext({} as CoffeeContextType);
 
 interface CoffeeContextProviderProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export function CoffeeContextProvider({
@@ -39,28 +39,28 @@ export function CoffeeContextProvider({
     subtractCoffeeOfCart,
     removeCoffeeOffCart,
     clearCart,
-  } = useItemsInCartContext()
+  } = useItemsInCartContext();
   const { paymentForm, addNewPayment, clearPaymentForm } =
-    usePaymentFormContext()
-  const { sales, addNewSale } = useSalesContext()
+    usePaymentFormContext();
+  const { sales, addNewSale } = useSalesContext();
 
   useEffect(() => {
-    const stateJSON = JSON.stringify(itemsInCart)
+    const stateJSON = JSON.stringify(itemsInCart);
 
-    localStorage.setItem('@coffeeShop:cartState-1.0.0', stateJSON)
-  }, [itemsInCart])
-
-  useEffect(() => {
-    const stateJSON = JSON.stringify(paymentForm)
-
-    localStorage.setItem('@coffeeShop:paymentForm-1.0.0', stateJSON)
-  }, [paymentForm])
+    localStorage.setItem("@coffeeShop:cartState-1.0.0", stateJSON);
+  }, [itemsInCart]);
 
   useEffect(() => {
-    const stateJSON = JSON.stringify(sales)
+    const stateJSON = JSON.stringify(paymentForm);
 
-    localStorage.setItem('@coffeeShop:sales-1.0.0', stateJSON)
-  })
+    localStorage.setItem("@coffeeShop:paymentForm-1.0.0", stateJSON);
+  }, [paymentForm]);
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(sales);
+
+    localStorage.setItem("@coffeeShop:sales-1.0.0", stateJSON);
+  });
 
   return (
     <CoffeeContext.Provider
@@ -79,5 +79,5 @@ export function CoffeeContextProvider({
     >
       {children}
     </CoffeeContext.Provider>
-  )
+  );
 }

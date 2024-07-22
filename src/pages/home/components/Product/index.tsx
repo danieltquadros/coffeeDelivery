@@ -1,12 +1,12 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
 
 // Interfaces
-import * as ICoffee from '../../../../interfaces/Coffee'
-import * as ICartItem from '../../../../interfaces/CartItem'
+import * as ICoffee from "../../../../interfaces/Coffee";
+import * as ICartItem from "../../../../interfaces/CartItem";
 
 // Global components
-import ProductImage from '../../../../components/ProductImage'
-import AddAndSubtract from '../../../../components/AddAndSubtract'
+import ProductImage from "../../../../components/ProductImage";
+import AddAndSubtract from "../../../../components/AddAndSubtract";
 
 // Styles
 import {
@@ -20,11 +20,11 @@ import {
   CurrencySymbol,
   AmountValue,
   SeeCartTextButton,
-} from './styles'
+} from "./styles";
 
 interface ProductProps {
-  coffee: ICoffee.model
-  quantityItem: ICartItem.model | null
+  coffee: ICoffee.model;
+  quantityItem: ICartItem.model | null;
 }
 
 const Product: React.FC<ProductProps> = memo(
@@ -37,15 +37,15 @@ const Product: React.FC<ProductProps> = memo(
           widthImage={120}
         />
         <CategoryText>
-          {coffee.categories.map((cat, index) => {
-            return <div key={index}>{cat.toUpperCase()}</div>
+          {coffee.categories.map((cat: string, index: number) => {
+            return <div key={index}>{cat.toUpperCase()}</div>;
           })}
         </CategoryText>
         <CoffeeName>{coffee.name}</CoffeeName>
         <CoffeeDescription>{coffee.description}</CoffeeDescription>
         <UnitaryValue>
-          valor unitário: R${' '}
-          {coffee.price.toFixed(2).toString().replace('.', ',')}
+          valor unitário: R${" "}
+          {coffee.price.toFixed(2).toString().replace(".", ",")}
         </UnitaryValue>
         <BuyArea>
           <ValueContainer>
@@ -55,18 +55,18 @@ const Product: React.FC<ProductProps> = memo(
                 ? (coffee.price * quantityItem.quantity)
                     .toFixed(2)
                     .toString()
-                    .replace('.', ',')
-                : '0,00'}
+                    .replace(".", ",")
+                : "0,00"}
             </AmountValue>
           </ValueContainer>
           <AddAndSubtract quantityItem={quantityItem} coffee={coffee} />
         </BuyArea>
         {quantityItem && <SeeCartTextButton />}
       </ProductContainer>
-    )
-  },
-)
+    );
+  }
+);
 
-Product.displayName = 'Product'
+Product.displayName = "Product";
 
-export default Product
+export default Product;

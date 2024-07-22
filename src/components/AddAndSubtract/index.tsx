@@ -3,7 +3,7 @@ import { Plus, Minus } from "phosphor-react";
 
 // Interfaces
 import * as ICartItem from "../../interfaces/CartItem";
-import * as ICoffee from "../../interfaces/Coffee/index.ts";
+import * as ICoffee from "../../interfaces/Coffee";
 
 // Context
 import { CoffeeContext } from "../../contexts/CoffeeContext/index.tsx";
